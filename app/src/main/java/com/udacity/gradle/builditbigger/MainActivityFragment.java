@@ -5,9 +5,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+
+import com.example.JokeClass;
 
 
 /**
@@ -22,6 +25,10 @@ public class MainActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_main, container, false);
+
+        TextView jokeView = (TextView) root.findViewById(R.id.instructions_text_view);
+        JokeClass joke = new JokeClass();
+        jokeView.setText(joke.tellJoke());
 
         AdView mAdView = (AdView) root.findViewById(R.id.adView);
         // Create an ad request. Check logcat output for the hashed device ID to
