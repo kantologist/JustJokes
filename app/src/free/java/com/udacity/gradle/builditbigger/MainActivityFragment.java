@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.JokeClass;
@@ -25,9 +26,8 @@ public class MainActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_main, container, false);
 
-        TextView jokeView = (TextView) root.findViewById(R.id.instructions_text_view);
-        JokeClass joke = new JokeClass();
-        jokeView.setText(joke.tellJoke());
+        ProgressBar progressBar = (ProgressBar) getActivity().findViewById(R.id.progress);
+        progressBar.setVisibility(View.GONE);
 
             AdView mAdView = (AdView) root.findViewById(R.id.adView);
             // Create an ad request. Check logcat output for the hashed device ID to

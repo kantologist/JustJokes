@@ -22,9 +22,8 @@ public class MainActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_main, container, false);
 
-        TextView jokeView = (TextView) root.findViewById(R.id.instructions_text_view);
-        JokeClass joke = new JokeClass();
-        jokeView.setText(joke.tellJoke());
+        ProgressBar progressBar = (ProgressBar) getActivity().findViewById(R.id.progress);
+        progressBar.setVisibility(View.GONE);
 
         return root;
     }

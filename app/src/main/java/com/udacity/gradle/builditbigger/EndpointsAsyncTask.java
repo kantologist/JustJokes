@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v4.util.Pair;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -21,13 +20,12 @@ import java.io.IOException;
  */
 
 
-public class EndpointsAsyncTask extends AsyncTask<Pair<Context, ProgressBar>, Void, String> {
+public class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
     private MyApi myApiService = null;
     private Context context;
-    private ProgressBar progressBar;
 
     @Override
-    protected String doInBackground(Pair<Context, ProgressBar> ... params) {
+    protected String doInBackground(Context ... params) {
         if(myApiService == null) {  // Only do this once
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
                     .setRootUrl("https://cohesive-memory-145712.appspot.com/_ah/api/");
@@ -36,8 +34,7 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, ProgressBar>, Vo
             myApiService = builder.build();
         }
 
-        context = params[0].first;
-        progressBar= params[0].second;
+        context = params[0];
 
 
         try {
@@ -54,6 +51,5 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, ProgressBar>, Vo
         intent.putExtra("joke", joke.tellJoke());
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
-        progressBar.setVisibility(View.GONE);
     }
 }
