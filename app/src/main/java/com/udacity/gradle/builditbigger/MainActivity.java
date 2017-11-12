@@ -41,6 +41,12 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        progressBar.setVisibility(View.GONE);
+    }
+
     public void tellJoke(View view) {
 
         progressBar.setVisibility(View.VISIBLE);
